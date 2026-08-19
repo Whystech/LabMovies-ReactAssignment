@@ -18,7 +18,7 @@ const styles = {
     },
 };
 
-const MovieReviews: React.FC<MovieDetailsProps> = (movie) => { 
+const  MovieReviews: React.FC<MovieDetailsProps> = (movie) => { 
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {

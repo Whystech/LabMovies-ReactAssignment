@@ -28,7 +28,7 @@ export interface BaseMovieListProps {
 export interface MovieDetailsProps extends BaseMovieProps {
   genres: {
     id: number;
-    name: string;
+    name: string; 
   }[];
   production_countries: {
     iso_3166_1: string;
@@ -49,6 +49,7 @@ export interface MovieImage {
 export interface MoviePageProps {
   movie: MovieDetailsProps;
   images: MovieImage[];
+  cast : Actor[];
 }
 
 export interface FilterMoviesCardProps {
@@ -61,12 +62,6 @@ export interface MovieListPageTemplateProps extends BaseMovieListProps {
   title: string;
 }
 
-export interface Review {
-  id: string;
-  content: string
-  author: string
-}
-
 export interface GenreData {
   genres: {
     id: string;
@@ -75,7 +70,7 @@ export interface GenreData {
 }
 
 export interface DiscoverMovies {
-  page: number;	
+  page: number;
   total_pages: number;
   total_results: number;
   results: BaseMovieProps[];
@@ -83,21 +78,34 @@ export interface DiscoverMovies {
 
 
 export interface UpcomingMovies {
-  page: number;	
+  page: number;
   total_pages: number;
   total_results: number;
   results: BaseMovieProps[];
 }
 
-  export interface Review {
-    author: string,
-    content: string,
-    agree: boolean,
-    rating: number,
-    movieId: number,
-  }
+export interface Review {
+  id: string,
+  author: string,
+  content: string,
+  agree: boolean,
+  rating: number,
+  movieId: number,
+}
 
-  
+// Interface for Actor type
+export interface Actor {
+  id: number;
+  name: string;
+  character: string;
+  profile_path?: string;
+  order: number;
+}
+
+export interface ActorList {
+list: Actor[]
+}
+
 export type FilterOption = "title" | "genre";
 
 
