@@ -1,15 +1,17 @@
 import PageTemplate from '../components/templateMovieListPage';
 import { BaseMovieProps } from "../types/interfaces";
-import { getUpcomingMovies } from "../api/tmdb-api";
+import { getTopRatedMovies } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
 import { titleFilter } from "../components/movieFilterUI";
 import { genreFilter } from "../components/movieFilterUI";
 import Spinner from "../components/spinner";
-import { UpcomingMovies } from '../types/interfaces';
+import { TopMovies } from '../types/interfaces';
 import { useQuery} from "react-query";
 import MovieFilterUI from "../components/movieFilterUI";
 import AddToPlaylistIcon from '../components/cardIcons/addToPlaylist';
 
+
+///Followed same structures as upcomingMoviesPage.tsx to create a new page for top movies.
 
 const titleFiltering = {
   name: "title",
@@ -22,8 +24,8 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const UpcomingMoviePage: React.FC = () => {
-  const { data, error, isLoading, isError } = useQuery<UpcomingMovies, Error>("upcoming", getUpcomingMovies);
+const TopMoviePage: React.FC = () => {
+  const { data, error, isLoading, isError } = useQuery<TopMovies, Error>("topmovies", getTopRatedMovies);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
   );
@@ -46,20 +48,13 @@ const UpcomingMoviePage: React.FC = () => {
     setFilterValues(updatedFilterSet);
   };
 
-  
-
   const movies = data ? data.results : [];
   const displayedMovies = filterFunction(movies);
-  // Redundant, but necessary to avoid app crashing.
-  const playlist = movies.filter(m => m.playlist)
-  localStorage.setItem("playlist", JSON.stringify(playlist));
-  const addToPLaylist = (movieId: number) => true;
 
   return (
-
     <>
       <PageTemplate
-        title="Upcoming Movies"
+        title="Top Rated Movies"
         movies={displayedMovies}
         action={(movie: BaseMovieProps) => {
           return <AddToPlaylistIcon {...movie} />
@@ -73,4 +68,4 @@ const UpcomingMoviePage: React.FC = () => {
     </>
   );
 };
-export default UpcomingMoviePage; 
+export default TopMoviePage; 

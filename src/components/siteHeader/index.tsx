@@ -30,8 +30,9 @@ const SiteHeader: React.FC = () => {
   const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Favorites", path: "/movies/favourites" },
+    { label: "Top Movies", path: "/topmovies" },
     { label: "Upcoming Movies", path: "/movies/upcoming" },
-    { label: "Playlist 4", path: "/movies/playlist" },
+    { label: "Playlist", path: "/movies/playlist" },
   ];
 
   const handleMenuSelect = (pageURL: string) => {
@@ -50,7 +51,6 @@ const SiteHeader: React.FC = () => {
             TMDB Client
           </Typography>
           <Typography variant="h6" sx={styles.title}>
-            All you ever wanted to know about Movies!
           </Typography>
           {isMobile ? (
             <>

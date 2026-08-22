@@ -12,9 +12,6 @@ import Spinner from "../components/spinner";
 import { BaseMovieProps } from "../types/interfaces";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 
-
-
-
 const titleFiltering = {
   name: "title",
   value: "",

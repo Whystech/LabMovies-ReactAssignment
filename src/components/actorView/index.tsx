@@ -4,8 +4,9 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import { Link } from "react-router-dom";
 
-interface ActorViewProps extends Actor {}
+interface ActorViewProps extends Actor { }
 
 const styles = {
   container: {
@@ -29,7 +30,7 @@ const styles = {
 const ActorView: React.FC<ActorViewProps> = ({ id, name, character, profile_path, order }) => {
   return (
     <Paper sx={styles.container}>
-       {/* Followed same structure as movie list */}
+      {/* Followed same structure as movie list */}
       <Grid container spacing={3}>
         {/* Actor Profile Image */}
         <Grid item xs={12} sm={6} md={4}>
@@ -54,7 +55,9 @@ const ActorView: React.FC<ActorViewProps> = ({ id, name, character, profile_path
         <Grid item xs={12} sm={6} md={8}>
           <Box sx={styles.details}>
             <Typography variant="h4" component="h1" gutterBottom>
-              {name}
+              <Link to={`/actors/${id}`}>
+                {name}
+              </Link>
             </Typography>
 
             <Typography variant="h6" color="textSecondary" gutterBottom>

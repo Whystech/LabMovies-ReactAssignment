@@ -84,6 +84,13 @@ export interface UpcomingMovies {
   results: BaseMovieProps[];
 }
 
+export interface TopMovies {
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: BaseMovieProps[];
+}
+
 export interface Review {
   id: string,
   author: string,
@@ -100,6 +107,14 @@ export interface Actor {
   character: string;
   profile_path?: string;
   order: number;
+}
+
+export interface ActorDetails extends Actor {
+  biography: string;
+  birthday: string | null;
+  place_of_birth: string | null;
+  known_for_department: string;
+  imdb_id: string | null;
 }
 
 export interface ActorList {
