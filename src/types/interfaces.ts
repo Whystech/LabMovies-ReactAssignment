@@ -121,6 +121,32 @@ export interface ActorList {
 list: Actor[]
 }
 
+{/* https://developer.themoviedb.org/reference/discover-tv API reference */}
+export interface BaseTVDetailsProps {
+  id: number;
+  name: string;
+  popularity: number;
+  genre_ids?: number[];
+  poster_path?: string;
+  first_air_date: string;
+  genres?: {
+    id: number;
+    name: string;}
+}
+
+export interface DiscoverSeries {
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: BaseTVDetailsProps[];
+}
+
+export interface TVSeriesListPageTemplateProps {
+  title: string;
+  series: BaseTVDetailsProps[];
+  tvSeriesAction: (s: BaseTVDetailsProps) => React.ReactNode;
+}
+
 export type FilterOption = "title" | "genre";
 
 

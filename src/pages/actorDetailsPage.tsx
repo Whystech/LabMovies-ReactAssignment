@@ -1,23 +1,23 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { getActor } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import { ActorDetails } from "../types/interfaces";
+import { useParams } from "react-router-dom"; // fixed import for userParams
 
 const ActorDetailsPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+const { id } =useParams<{ id: string }>();
   const { data: actor, error, isLoading, isError } = useQuery<ActorDetails, Error>(
     ["actor", id],
     () => getActor(id || "")
   );
 
+  //follows same structure as other pages to handle loading, error, and data display states 
   if (isLoading) return <Spinner />;
   if (isError) return <Alert severity="error">{error.message}</Alert>;
   if (!actor) return <Alert severity="warning">Actor details are unavailable.</Alert>;

@@ -17,6 +17,7 @@ const ActorList: React.FC<ActorListProps> = ({ actors }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
  
 // Used https://mui.com/material-ui/react-drawer/ as reference to make drawer open - more basic than action but it does the job
+// Similar to reviews
   const handleActorClick = (actor: Actor) => {
     setSelectedActor(actor);
     setDrawerOpen(true);

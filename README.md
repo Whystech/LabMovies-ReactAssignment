@@ -1,30 +1,82 @@
-# React + TypeScript + Vite
+# Movies App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React and TypeScript movie application using data from The Movie Database (TMDB).
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Browse discovered, upcoming, and top-rated movies
+- Filter movies by title and genre
+- View movie details, images, reviews, and cast
+- Open actor details from the cast view
+- Add movies to favourites or a playlist
+- Write and view movie reviews
+- Explore reusable components in Storybook
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Requirements
 
-- Configure the top-level `parserOptions` property like this:
+- Node.js
+- A TMDB API key
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### Installation
+
+```bash
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Create a `.env` file in the project root:
+
+```env
+VITE_TMDB_KEY=your_tmdb_api_key
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at the local URL shown in the terminal.
+
+## Useful Scripts
+
+```bash
+npm run dev             # Start the Vite development server
+npm run build           # Type-check and build the application
+npm run lint            # Run ESLint
+npm run storybook       # Start Storybook
+npm run build-storybook # Build Storybook
+```
+
+## Main Routes
+
+- `/` - Discover movies
+- `/movies/upcoming` - Upcoming movies
+- `/topmovies` - Top-rated movies
+- `/movies/favourites` - Favourite movies
+- `/movies/playlist` - Playlist
+- `/movies/:id` - Movie details
+- `/actors/:id` - Actor details
+- `/reviews/:id` - Movie reviews
+- `/reviews/form` - Add a review
+
+## Technologies
+
+- React and TypeScript
+- Vite
+- Material UI
+- React Router
+- React Query
+- Storybook
+
+## References
+
+- [TMDB API documentation](https://developer.themoviedb.org/docs)
+- [TMDB top-rated movies endpoint](https://developer.themoviedb.org/reference/movie-top-rated-list)
+- [React documentation](https://react.dev/)
+- [React Router documentation](https://reactrouter.com/)
+- [Material UI documentation](https://mui.com/)
+- [Drawer Documentation](https://mui.com/material-ui/react-drawer/)
+
+

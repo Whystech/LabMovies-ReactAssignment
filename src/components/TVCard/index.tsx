@@ -14,7 +14,7 @@ import img from "../../images/film-poster-placeholder.png";
 import { Link } from "react-router-dom";
 import React, { MouseEvent, useContext } from "react";
 import Avatar from "@mui/material/Avatar";
-import { BaseMovieProps } from "../../types/interfaces";
+import { BaseTVDetailsProps } from "../../types/interfaces";
 import { MoviesContext } from "../../contexts/moviesContext";
 
 const styles = {
@@ -25,19 +25,17 @@ const styles = {
   },
 };
 
-interface MovieCardProps {
-  movie: BaseMovieProps;
-  action: (m: BaseMovieProps) => React.ReactNode;
+interface TVCardProps {
+  series: BaseTVDetailsProps;
+  action: (s: BaseTVDetailsProps) => React.ReactNode;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie, action }) => {
+const TVCard: React.FC<TVCardProps> = ({ series, action }) => {
   const { favourites, addToFavourites } = useContext(MoviesContext);
   const { playlist, addToPlaylist } = useContext(MoviesContext);
 
-  const isFavourite = favourites.find((id) => id === movie.id) ? true : false; //NEW
-  const isPlaylist = playlist.find((id) => id === movie.id) ? true : false; //NEW
-
-  
+  const isFavourite = favourites.find((id) => id === series.id) ? true : false; //NEW
+  const isPlaylist = playlist.find((id) => id === series.id) ? true : false; //NEW
 
   return (
     <Card sx={styles.card}>
@@ -45,19 +43,12 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, action }) => {
         avatar={
           isFavourite ? ( //CHANGED
             <Avatar sx={styles.avatar}>
-               <Button
-            onClick={() => addToFavourites(movie)}
-            startIcon={<FavoriteIcon />}
-            color={isPlaylist ? "secondary" : "primary"}
-          >
-            {isPlaylist ? "In Playlist" : "Add to Playlist"}
-          </Button>
             </Avatar>
           ) : null
         }
         title={
           <Typography variant="h5" component="p">
-            {movie.title}{" "}
+            {series.name}{" "}
           </Typography>
         }
       />
@@ -65,8 +56,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, action }) => {
       <CardMedia
         sx={styles.media}
         image={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+          series.poster_path
+            ? `https://image.tmdb.org/t/p/w500/${series.poster_path}`
             : img
         }
       />
@@ -74,35 +65,26 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, action }) => {
         <Grid container>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
-              {movie.release_date}
+            
+              {"FirstAir Date"} {series.first_air_date}
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
+              
               <StarRateIcon fontSize="small" />
-              {"  "} {movie.vote_average}{" "}
+              {" Rating "} {series.vote_average.toFixed(1)}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-        {action(movie)}
-        <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            More Info ...
-          </Button>
+        {action(series)}
+        <Link to={`/tv/${series.id}`}>
         </Link>
-        <Button
-            onClick={() => addToPlaylist(movie)}
-            startIcon={<PlaylistAdd />}
-            color={isPlaylist ? "secondary" : "primary"}
-          >
-            {isPlaylist ? "In Playlist" : "Add to Playlist"}
-          </Button>
       </CardActions>
     </Card>
   );
 };
 
-export default MovieCard;
+export default TVCard;

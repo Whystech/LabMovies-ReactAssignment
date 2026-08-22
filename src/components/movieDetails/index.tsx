@@ -10,10 +10,6 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from '../movieReviews';
-import ActorList from "../actorList";
-import Actor from "../actorList";
-import { getMovieActors } from "../../api/tmdb-api";
-
 
 const styles = {
     chipSet: {
