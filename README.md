@@ -1,7 +1,7 @@
 # Movies App
 
 A React and TypeScript movie application using data from The Movie Database (TMDB).
-The project extends the original Movies app with actor details, top-rated movies,
+gThe project extends the original Movies app with actor details, top-rated movies,
 TV series, and a personal fantasy movie creator.
 
 ## Features
@@ -34,9 +34,6 @@ Create a `.env` file in the project root:
 ```env
 VITE_TMDB_KEY=your_tmdb_api_key
 ```
-
-Get an API key from the [TMDB developer portal](https://developer.themoviedb.org/docs/authentication-1).
-Do not commit the `.env` file or your API key to the repository.
 
 Start the development server:
 
@@ -84,16 +81,11 @@ npm run build-storybook # Build Storybook
 
 - [TMDB API documentation](https://developer.themoviedb.org/docs)
 - [TMDB top-rated movies endpoint](https://developer.themoviedb.org/reference/movie-top-rated-list)
-- [TMDB TV discover endpoint](https://developer.themoviedb.org/reference/discover-tv)
 - [TMDB actor details endpoint](https://developer.themoviedb.org/reference/person-details)
 - [React documentation](https://react.dev/)
 - [React Router documentation](https://reactrouter.com/)
 - [Material UI documentation](https://mui.com/)
-- [Vite documentation](https://vitejs.dev/guide/)
-- [React Query documentation](https://tanstack.com/query/v3/)
-- [Storybook documentation](https://storybook.js.org/docs)
 - [Drawer Documentation](https://mui.com/material-ui/react-drawer/)
 
-This product uses the TMDB API but is not endorsed or certified by TMDB.
 
 
