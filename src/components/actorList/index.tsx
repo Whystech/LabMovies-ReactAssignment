@@ -15,9 +15,9 @@ interface ActorListProps {
 const ActorList: React.FC<ActorListProps> = ({ actors }) => {
   const [selectedActor, setSelectedActor] = useState<Actor | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
- 
+  // This component displays a list of actors in the movie details view.
 // Used https://mui.com/material-ui/react-drawer/ as reference to make drawer open - more basic than action but it does the job
-// Similar to reviews
+// Similar to reviews/movie list
   const handleActorClick = (actor: Actor) => {
     setSelectedActor(actor);
     setDrawerOpen(true);

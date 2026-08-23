@@ -15,7 +15,8 @@ import PlaylistMoviePage from "./pages/playlistPage";
 import TopMoviesPage from "./pages/topMoviesPage";
 import ActorDetailsPage from "./pages/actorDetailsPage";
 import TVSeriesPageList from "./pages/TVSeriesPage";
-
+import PersonalMoviePageCreator from "./pages/personalMoviePageCreator";
+import PersonalMoviePage from "./pages/personalMoviePage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,7 +46,8 @@ const App = () => {
             <Route path="/topmovies" element={<TopMoviesPage />} />
             <Route path="/actors/:id" element={<ActorDetailsPage />} />
             <Route path="/tvseries" element={<TVSeriesPageList />} />
-            
+            <Route path="/my-movie" element={<PersonalMoviePageCreator />} />
+            <Route path="/my-movie-page" element={<PersonalMoviePage />} />
           </Routes>
         </MoviesContextProvider>
       </BrowserRouter>

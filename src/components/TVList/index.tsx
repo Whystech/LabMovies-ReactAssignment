@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { BaseTVDetailsProps } from "../../types/interfaces";
 import TVCard from "../TVCard";
 import Grid from "@mui/material/Grid";

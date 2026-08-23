@@ -12,7 +12,7 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import img from "../../images/film-poster-placeholder.png";
 import { Link } from "react-router-dom";
-import React, { MouseEvent, useContext } from "react";
+import React, { useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import { BaseMovieProps } from "../../types/interfaces";
 import { MoviesContext } from "../../contexts/moviesContext";

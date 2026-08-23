@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 
 interface ActorViewProps extends Actor { }
 
+//This component is used to display actor information in a card format, including their profile image, name, character, and order in the cast list. It also provides a link to the actor's details page. 
+
 const styles = {
   container: {
     padding: 2,
@@ -30,7 +32,6 @@ const styles = {
 const ActorView: React.FC<ActorViewProps> = ({ id, name, character, profile_path, order }) => {
   return (
     <Paper sx={styles.container}>
-      {/* Followed same structure as movie list */}
       <Grid container spacing={3}>
         {/* Actor Profile Image */}
         <Grid item xs={12} sm={6} md={4}>
