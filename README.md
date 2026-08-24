@@ -1,29 +1,31 @@
 # Movies App
 
-A React and TypeScript movie application using data from The Movie Database (TMDB).
-gThe project extends the original Movies app with actor details, top-rated movies,
-TV series, and a personal fantasy movie creator.
+A React and TypeScript single-page application built around The Movie Database (TMDB) API.
+It extends the original Movies app with top-rated movies, TV series, actor details, personal movies, and Supabase authentication.
 
 ## Features
 
 - Browse discovered, upcoming, and top-rated movies
 - Browse TV series
-- Filter movies by title and genre
+- Filter movie and TV results
 - View movie details, images, reviews, and cast
-- Open actor details from the cast view
-- Create and view a personal fantasy movie
-- Add movies to favourites or a playlist
-- Write and view movie reviews
+- Open actor details from cast cards
+- Add movies to favourites and playlists
+- Create and view personal fantasy movies
+- Sign up and sign in with Supabase
+- Protect user-specific routes
+- Cache TMDB server state with React Query
 - Explore reusable components in Storybook
 
-## Getting Started
+## Setup
 
 ### Requirements
 
 - Node.js
 - A TMDB API key
+- A Supabase project with email authentication enabled
 
-### Installation
+Install the dependencies:
 
 ```bash
 npm install
@@ -33,7 +35,12 @@ Create a `.env` file in the project root:
 
 ```env
 VITE_TMDB_KEY=your_tmdb_api_key
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY==publishable_key
 ```
+
+API keys can be obtained from the [TMDB developer portal](https://developer.themoviedb.org/docs/authentication-1) and the Supabase project API settings.
+Do not commit `.env` or expose secret keys in the repository.
 
 Start the development server:
 
@@ -41,9 +48,7 @@ Start the development server:
 npm run dev
 ```
 
-The application will be available at the local URL shown in the terminal.
-
-## Useful Scripts
+## Scripts
 
 ```bash
 npm run dev             # Start the Vite development server
@@ -53,39 +58,60 @@ npm run storybook       # Start Storybook
 npm run build-storybook # Build Storybook
 ```
 
-## Main Routes
+## Routes
+
+### Public routes
 
 - `/` - Discover movies
 - `/movies/upcoming` - Upcoming movies
 - `/topmovies` - Top-rated movies
-- `/movies/favourites` - Favourite movies
-- `/movies/playlist` - Playlist
 - `/movies/:id` - Movie details
 - `/actors/:id` - Actor details
 - `/tvseries` - TV series
+- `/reviews/:id` - Review details
+- `/login` - Sign in
+- `/signup` - Create an account
+
+### Protected routes
+
+These routes require an authenticated Supabase user:
+
+- `/movies/favourites` - Favourite movies
+- `/movies/playlist` - Playlist
+- `/reviews/form` - Add a movie review
 - `/my-movie` - Create a personal fantasy movie
-- `/my-movie-page` - View the saved personal movie
-- `/reviews/:id` - Movie reviews
-- `/reviews/form` - Add a review
+- `/my-movie-page` - View saved personal movies
+
+Unauthenticated users are redirected to `/login` by `ProtectedRoute`.
+
+## Data and Storage
+
+- TMDB data is fetched through the functions in `src/api/tmdb-api.ts`.
+- React Query caches API responses in the browser as client-side server-state caching.
+- Personal movies are stored in browser `localStorage` under `personalMovies`.
+- Favourites and playlists currently use React context state and browser storage in parts of the application.
 
 ## Technologies
 
-- React and TypeScript
+- React 18 and TypeScript
 - Vite
 - Material UI
 - React Router
 - React Query
+- Supabase Auth
 - Storybook
 
 ## References
 
 - [TMDB API documentation](https://developer.themoviedb.org/docs)
+- [TMDB authentication](https://developer.themoviedb.org/docs/authentication-1)
 - [TMDB top-rated movies endpoint](https://developer.themoviedb.org/reference/movie-top-rated-list)
+- [TMDB TV discover endpoint](https://developer.themoviedb.org/reference/discover-tv)
 - [TMDB actor details endpoint](https://developer.themoviedb.org/reference/person-details)
 - [React documentation](https://react.dev/)
 - [React Router documentation](https://reactrouter.com/)
 - [Material UI documentation](https://mui.com/)
-- [Drawer Documentation](https://mui.com/material-ui/react-drawer/)
-
-
+- [React Query documentation](https://tanstack.com/query/v3/)
+- [Supabase Auth documentation](https://supabase.com/docs/guides/auth)
+- [Material UI Drawer documentation](https://mui.com/material-ui/react-drawer/)
 

@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from "react";
+import React, { useContext, useState, MouseEvent } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -11,6 +11,7 @@ import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { AuthContext } from "../../contexts/authContext";
 
 const styles = {
     title: {
@@ -24,19 +25,21 @@ const SiteHeader: React.FC = () => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement|null>(null);
   const open = Boolean(anchorEl);
-  const theme = useTheme();
+  const theme = useTheme();``
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const { user, signOut } = useContext(AuthContext);
 
   const menuOptions = [
     { label: "Home", path: "/" },
-    { label: "Favorites", path: "/movies/favourites" },
+    { label: "Favorites", path: "/movies/favourites", private: true },
     { label: "Top Movies", path: "/topmovies" },
     { label: "Upcoming Movies", path: "/movies/upcoming" },
-    { label: "Playlist", path: "/movies/playlist" },
+    { label: "Playlist", path: "/movies/playlist", private: true },
     { label: "TV", path: "/tvseries" },
-    { label: "Movie Creator", path: "/my-movie" },
-    { label: "Personal Movie Page", path: "/my-movie-page"}
+    { label: "Movie Creator", path: "/my-movie", private: true },
+    { label: "Personal Movies Page", path: "/my-movie-page", private: true }
   ];
+  const visibleMenuOptions = menuOptions.filter((option) => !option.private || user);
 
   const handleMenuSelect = (pageURL: string) => {
     navigate(pageURL);
@@ -44,6 +47,14 @@ const SiteHeader: React.FC = () => {
 
   const handleMenu = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleAuthAction = async () => {
+    if (user) {
+      await signOut();
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -82,7 +93,7 @@ const SiteHeader: React.FC = () => {
                 open={open}
                 onClose={() => setAnchorEl(null)}
               >
-                {menuOptions.map((opt) => (
+                {visibleMenuOptions.map((opt) => (
                   <MenuItem
                     key={opt.label}
                     onClick={() => handleMenuSelect(opt.path)}
@@ -94,7 +105,7 @@ const SiteHeader: React.FC = () => {
             </>
           ) : (
             <>
-              {menuOptions.map((opt) => (
+              {visibleMenuOptions.map((opt) => (
                 <Button
                   key={opt.label}
                   color="inherit"
@@ -105,6 +116,9 @@ const SiteHeader: React.FC = () => {
               ))}
             </>
           )}
+          <Button color="inherit" onClick={handleAuthAction}>
+            {user ? "Sign out" : "Sign in"}
+          </Button>
         </Toolbar>
       </AppBar>
       <Offset />

@@ -14,19 +14,15 @@ import { MovieDetailsProps } from "../types/interfaces";
 
 const genres = ["Action", "Adventure", "Comedy", "Drama", "Fantasy", "Science Fiction"];
 
-// as it is right now, it just creates one fantasy movie and saves it to local storage and then displays it
-// there is no permanence to it 
-// the movie will be listed as most recently added movie 
-
-//returns latest saved movie from local storage if available, otherwise null
-const getSavedMovie = (): MovieDetailsProps | null => {
-  const savedMovie = localStorage.getItem("personalMovie");
-  if (!savedMovie) return null;
+// Returns saved personal movies from local storage.
+const getSavedMovies = (): MovieDetailsProps[] => {
+  const savedMovies = localStorage.getItem("personalMovies");
+  if (!savedMovies) return [];
   try {
-    return JSON.parse(savedMovie) as MovieDetailsProps;
+    return JSON.parse(savedMovies) as MovieDetailsProps[];
   } catch {
-    localStorage.removeItem("personalMovie");
-    return null;
+    localStorage.removeItem("personalMovies");
+    return [];
   }
 };
 
@@ -38,7 +34,7 @@ const PersonalMoviePage: React.FC = () => {
   const [releaseDate, setReleaseDate] = useState("");
   const [runtime, setRuntime] = useState(90);
   const [productionCompany, setProductionCompany] = useState("");
-  const [createdMovie, setCreatedMovie] = useState<MovieDetailsProps | null>(getSavedMovie);
+  const [createdMovies, setCreatedMovies] = useState<MovieDetailsProps[]>(getSavedMovies);
 
   // similar to genres functionality in lab 
   const handleGenreChange = (genre: string) => {
@@ -71,8 +67,9 @@ const PersonalMoviePage: React.FC = () => {
       vote_average: 0,
       vote_count: 0,
     };
-    setCreatedMovie(personalMovie);
-   localStorage.setItem("personalMovie", JSON.stringify(personalMovie));
+    const updatedMovies = [...createdMovies, personalMovie];
+    setCreatedMovies(updatedMovies);
+    localStorage.setItem("personalMovies", JSON.stringify(updatedMovies));
   };
 
   return (
@@ -84,13 +81,6 @@ const PersonalMoviePage: React.FC = () => {
         <Typography color="text.secondary" sx={{ mb: 3 }}>
           Design a movie using your own details.
         </Typography>
-
-        {createdMovie && (
-          <Alert severity="success" sx={{ mb: 3 }}>
-            Your movie, {createdMovie.title}, has been created.
-          </Alert>
-        )}
-
         <Box component="form" onSubmit={handleSubmit}>
           <Stack spacing={3}>
             <TextField
@@ -147,30 +137,11 @@ const PersonalMoviePage: React.FC = () => {
               onChange={(event) => setProductionCompany(event.target.value)}
             />
             <Stack direction="row" spacing={2}>
-              <Button type="submit" variant="contained">Create movie</Button>
-              <Button component={Link} to="/" variant="outlined">Cancel</Button>
+              <Button type="submit">Create movie</Button>
+
             </Stack>
           </Stack>
         </Box>
-                
-        {createdMovie && (
-            // Created movie from local storage is displayed below the form
-          <Box sx={{ mt: 5 }}>
-            <Typography variant="h5" component="h2" gutterBottom>
-            Most Recently added movie
-            </Typography>
-            <Typography variant="h4" component="h2" gutterBottom>
-              {createdMovie.title}
-            </Typography>
-            <Typography sx={{ mb: 2 }}>{createdMovie.overview}</Typography>
-            <Typography>Genres: {createdMovie.genres.map((genre) => genre.name + " ") || "None"}</Typography>
-            <Typography>Release date: {createdMovie.release_date}</Typography>
-            <Typography>Runtime: {createdMovie.runtime} minutes</Typography>
-            <Typography>
-              Production company: {createdMovie.production_companies[0].name}
-            </Typography>
-          </Box>
-        )}
       </Paper>
     </Box>
   );
