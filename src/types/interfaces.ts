@@ -134,6 +134,7 @@ export interface BaseTVDetailsProps {
   genre_ids?: number[];
   poster_path?: string;
   first_air_date: string;
+  vote_average?: number;
   genres?: {
     id: number;
     name: string;}

@@ -70,7 +70,7 @@ const TVCard: React.FC<TVCardProps> = ({ series, action }) => {
             <Typography variant="h6" component="p">
               
               <StarRateIcon fontSize="small" />
-              {" Rating "} {series.vote_average.toFixed(1)}
+              {" Rating "} {series.vote_average?.toFixed(1)}
             </Typography>
           </Grid>
         </Grid>
