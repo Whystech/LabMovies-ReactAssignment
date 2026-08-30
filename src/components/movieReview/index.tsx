@@ -1,6 +1,5 @@
 import React from "react";
 import { Review } from "../../types/interfaces";
-import MovieReviewPage from "./pages/movieReviewPage";
 
 
 const MovieReview: React.FC<Review> =  (props) => {
