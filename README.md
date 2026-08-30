@@ -15,7 +15,7 @@ It extends the original Movies app with top-rated movies, TV series, actor detai
 - Sign up and sign in with Supabase
 - Protect user-specific routes
 - Cache TMDB server state with React Query
-- Explore reusable components in Storybook
+- Explore reusable components in Storybook (from the base Lab, no additional features in this assignment)
 
 ## Setup
 
