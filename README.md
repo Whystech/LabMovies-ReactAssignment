@@ -108,3 +108,4 @@ Unauthenticated users are redirected to `/login` by `ProtectedRoute`.
 - Main (personal) objective I aimed during this assignment was to put in-place a modern authenitcation method that could serve in the future as a learning cornerstone for future projects.
 - This came with the challenge of understanding routes and protected routes.
 - I still do find React complex and there are multiple other places where I could have tried to make a deeper dive in terms of functionality.
+- Had to use CI = false in Vercel as there were some unused imports and as I did not want to break additional stuff, I just sent it
