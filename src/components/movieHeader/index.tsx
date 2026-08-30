@@ -20,7 +20,7 @@ const styles = {
 
 const MovieHeader: React.FC<MovieDetailsProps> = (movie) => {
   const favList = JSON.parse(localStorage.getItem("favourites") || "[]");
-  const isFavourite = favList.some(f => f.id === movie.id); //because the localStorage is storing all movie objects and not just its id so I need to match the current movie's id with the id's from the list
+  const isFavourite = favList.some((f: any) => f.id === movie.id); //because the localStorage is storing all movie objects and not just its id so I need to match the current movie's id with the id's from the list
 
   return (
     <Paper component="div" sx={styles.root}>

@@ -2,17 +2,12 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import CardHeader from "@mui/material/CardHeader";
-
 import Typography from "@mui/material/Typography";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import img from "../../images/film-poster-placeholder.png";
 import { Link } from "react-router-dom";
-import React, { MouseEvent, useContext } from "react";
-import Avatar from "@mui/material/Avatar";
 import { BaseTVDetailsProps } from "../../types/interfaces";
-import { MoviesContext } from "../../contexts/moviesContext";
 
 const styles = {
   card: { maxWidth: 345 },
@@ -28,27 +23,10 @@ interface TVCardProps {
 }
 
 const TVCard: React.FC<TVCardProps> = ({ series, action }) => {
-  const { favourites, addToFavourites } = useContext(MoviesContext);
-  const { playlist, addToPlaylist } = useContext(MoviesContext);
-
-  const isFavourite = favourites.find((id) => id === series.id) ? true : false; //NEW
-  const isPlaylist = playlist.find((id) => id === series.id) ? true : false; //NEW
-
+  
   return (
     <Card sx={styles.card}>
-      <CardHeader
-        avatar={
-          isFavourite ? ( //CHANGED
-            <Avatar sx={styles.avatar}>
-            </Avatar>
-          ) : null
-        }
-        title={
-          <Typography variant="h5" component="p">
-            {series.name}{" "}
-          </Typography>
-        }
-      />
+    
 
       <CardMedia
         sx={styles.media}
