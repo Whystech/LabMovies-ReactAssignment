@@ -42,14 +42,14 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <Box sx={{ maxWidth: 480, mx: "auto", p: { xs: 2, md: 4 } }}>
+    <Box sx={{ maxWidth: 480, mx: "auto", p: { xs: 4, md: 6 } }}>
       <Paper sx={{ p: { xs: 2, md: 4 } }}>
         <Typography variant="h4" component="h1" gutterBottom>
           {mode === "signIn" ? "Sign in" : "Create an account"}
         </Typography>
         {error && <Alert severity={mode === "signUp" ? "info" : "error"} sx={{ mb: 2 }}>{error}</Alert>}
         <Box component="form" onSubmit={handleSubmit}>
-          <Stack spacing={2}>
+          <Stack spacing={6}>
             <TextField
               required
               type="email"

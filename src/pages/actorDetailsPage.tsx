@@ -11,7 +11,7 @@ import { ActorDetails } from "../types/interfaces";
 import { useParams } from "react-router-dom"; // fixed import for userParams
 
 const ActorDetailsPage: React.FC = () => {
-const { id } =useParams<{ id: string }>();
+const { id } = useParams<{ id: string }>();
   const { data: actor, error, isLoading, isError } = useQuery<ActorDetails, Error>(
     ["actor", id],
     () => getActor(id || "")

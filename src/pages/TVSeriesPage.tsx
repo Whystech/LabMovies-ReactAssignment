@@ -41,7 +41,6 @@ const TVSeriesPageList: React.FC = () => {
     return <h1>{error.message}</h1>;
   }
 
-
   const changeFilterValues = (type: string, value: string) => {
     const changedFilter = { name: type, value: value };
     const updatedFilterSet =

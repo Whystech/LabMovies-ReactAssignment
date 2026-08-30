@@ -26,7 +26,7 @@ const defaultAuthContext: AuthContextValue = {
 export const AuthContext = React.createContext<AuthContextValue>(defaultAuthContext);
 
 const AuthContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null); // null uf no user is logged in
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const AuthContextProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
       }
     });
 
-    const { data: authListener } = supabase.auth.onAuthStateChange(
+    const { data: authListener } = supabase.auth.onAuthStateChange( //responds to auth changes 
       (_event, session) => {
         setUser(session?.user ?? null);
         setLoading(false);

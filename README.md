@@ -40,24 +40,12 @@ VITE_SUPABASE_ANON_KEY==publishable_key
 ```
 
 API keys can be obtained from the [TMDB developer portal](https://developer.themoviedb.org/docs/authentication-1) and the Supabase project API settings.
-Do not commit `.env` or expose secret keys in the repository.
 
 Start the development server:
 
 ```bash
 npm run dev
 ```
-
-## Scripts
-
-```bash
-npm run dev             # Start the Vite development server
-npm run build           # Type-check and build the application
-npm run lint            # Run ESLint
-npm run storybook       # Start Storybook
-npm run build-storybook # Build Storybook
-```
-
 ## Routes
 
 ### Public routes
@@ -115,3 +103,8 @@ Unauthenticated users are redirected to `/login` by `ProtectedRoute`.
 - [Supabase Auth documentation](https://supabase.com/docs/guides/auth)
 - [Material UI Drawer documentation](https://mui.com/material-ui/react-drawer/)
 
+## Notes
+
+- Main (personal) objective I aimed during this assignment was to put in-place a modern authenitcation method that could serve in the future as a learning cornerstone for future projects.
+- This came with the challenge of understanding routes and protected routes.
+- I still do find React complex and there are multiple other places where I could have tried to make a deeper dive in terms of functionality.

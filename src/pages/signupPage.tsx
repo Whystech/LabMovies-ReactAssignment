@@ -53,7 +53,7 @@ const SignupPage: React.FC = () => {
         {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
         {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}
         <Box component="form" onSubmit={handleSubmit}>
-          <Stack spacing={2}>
+          <Stack spacing={6}>
             <TextField
               required
               type="email"
